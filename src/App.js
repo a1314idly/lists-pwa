@@ -59,7 +59,7 @@ class App extends Component {
       }
     );
   }
-  
+
   handleShow() {
     this.setState(
       {
@@ -215,7 +215,7 @@ class App extends Component {
     return (
       <div>
         <div>
-          <img src={browser} width="100%" />
+          <img id="pwa" src={browser} />
         </div>
 
         <div>
@@ -223,9 +223,7 @@ class App extends Component {
             <h1>PWA Browser Support</h1>
             <h3>Detect browser compatibility for Progressive Web App (PWA) features:</h3>
           </div>
-        </div>
 
-        <div>
           <div id="content">
             <Button variant="outline-primary" onClick={this.handleShow.bind(this)} >Try</Button>
 
