@@ -19,6 +19,10 @@ import './App.css';
 import { Button, Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import checkLogo from './checked.png';
+import uncheckLogo from './crossed.png';
+import browser from './browser.png';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -132,7 +136,6 @@ class App extends Component {
       }
       return false;
     }());
-
     if (canFullscreen) {
       this.setState(
         {
@@ -211,97 +214,107 @@ class App extends Component {
     return (
       <div>
         <div>
-          <h1>PWA Browser Support</h1>
+          <img src={browser} width="100%" />
         </div>
+
         <div>
-          <Button onClick={this.handleShow.bind(this)} >Try</Button>
+          <div id="left">
+            <h1>PWA Browser Support</h1>
+            <h3>Detect browser compatibility for Progressive Web App (PWA) features:</h3>
+          </div>
+        </div>
 
-          <Modal show={this.state.show} onHide={this.handleClose.bind(this)}>
-            <Modal.Header closeButton>
-              <Modal.Title>Browser compatibility</Modal.Title>
-            </Modal.Header>
+        <div>
+          <div id="content">
+            <Button variant="outline-primary" onClick={this.handleShow.bind(this)} >Try</Button>
 
-            <Modal.Body>
-              <div>
-                <h5>Web Browser:</h5>
-                <p>{this.WebBrowser}</p>
-              </div>
+            <Modal show={this.state.show} onHide={this.handleClose.bind(this)}>
+              <Modal.Header closeButton>
+                <Modal.Title>Browser compatibility</Modal.Title>
+              </Modal.Header>
 
-              <div>
-                <h4>PWA features:{this.PWAcont}/7</h4>
-                <ul>
-                  <li>
-                    <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API">Service Worker: </a>
-                    {this.state.serviceWorker ? 'true' : 'false'}
-                  </li>
-                  <li>
-                    <a target="_blank" href="https://wicg.github.io/BackgroundSync/spec/#introduction" value="https://wicg.github.io/BackgroundSync/spec/#introduction">Background Sync: </a>
-                    {this.state.SyncManager ? 'true' : 'false'}
-                  </li>
-                  <li>
-                    <a target="_blank" href="https://developer.mozilla.org/pl/docs/Web/API/Push_API" title="https://developer.mozilla.org/pl/docs/Web/API/Push_API">Push Notifications:</a>
-                    {this.state.PushManager ? 'true' : 'false'}
-                  </li>
-                  <li>
-                    <a target="_blank" href="https://developer.mozilla.org/pl/docs/Web/API/Cache" title="https://developer.mozilla.org/pl/docs/Web/API/Cache">Cache Storage (Offline):</a>
-                    {this.state.Cache ? 'true' : 'false'}
-                  </li>
-                  <li>
-                    <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Payment_Request_API" title="https://developer.mozilla.org/en-US/docs/Web/API/Payment_Request_API">Payments: </a>
-                    {this.state.PaymentRequest ? 'true' : 'false'}
-                  </li>
-                  <li>
-                    <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share" title="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share">Share: </a>
-                    {this.state.share ? 'true' : 'false'}
-                  </li>
-                  <li>
-                    <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API" title="https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API">Fullscreen:</a>
-                    {this.state.canFullscreen ? 'true' : 'false'}
-                  </li>
-                </ul>
-              </div>
+              <Modal.Body>
+                <div>
+                  <h5>Web Browser:</h5>
+                  <p>{this.WebBrowser}</p>
+                </div>
 
-              <div>
-                <h4>IOT features:{this.IOTcont}/7</h4>
-                <ul>
-                  <li>
-                    <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API" title="https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API">Web Bluetooth: </a>
-                    {this.state.WebBluetooth ? 'true' : 'false'}
-                  </li>
-                  <li>
-                    <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/USB" value="https://developer.mozilla.org/en-US/docs/Web/API/USB">Web USB: </a>
-                    {this.state.USB ? 'true' : 'false'}
-                  </li>
-                  <li>
-                    <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Glossary/WebRTC" title="https://developer.mozilla.org/en-US/docs/Glossary/WebRTC">Web RTC Data Channels:</a>
-                    {this.state.WebRTC ? 'true' : 'false'}
-                  </li>
-                  <li>
-                    <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getUserMedia" title="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getUserMedia">Video/Camera Access:</a>
-                    {this.state.UserMedia ? 'true' : 'false'}
-                  </li>
-                  <li>
-                    <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Archive/B2G_OS/API/Power_Management_API" title="https://developer.mozilla.org/en-US/docs/Archive/B2G_OS/API/Power_Management_API">Power Management:</a>
-                    {this.state.PowerManagement ? 'true' : 'false'}
-                  </li>
-                  <li>
-                    <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/" title="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/">Voice Rec / Text-to-speech:</a>
-                    {this.state.WebSpeech ? 'true' : 'false'}
-                  </li>
-                  <li>
-                    <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Beacon_API" title="https://developer.mozilla.org/en-US/docs/Web/API/Beacon_API">Beacons:</a>
-                    {this.state.Beacon ? 'true' : 'false'}
-                  </li>
-                </ul>
-              </div>
-              <Button onClick={this.handleClose.bind(this)}>
-                Close</Button>
-            </Modal.Body>
+                <div>
+                  <h4>PWA features:{this.PWAcont}/7</h4>
+                  <ul>
+                    <li>
+                      <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API">Service Worker:   </a>
+                      {this.state.serviceWorker ? <img src={checkLogo} /> : <img src={uncheckLogo} />}
+                    </li>
+                    <li>
+                      <a target="_blank" href="https://wicg.github.io/BackgroundSync/spec/#introduction" value="https://wicg.github.io/BackgroundSync/spec/#introduction">Background Sync:    </a>
+                      {this.state.SyncManager ? <img src={checkLogo} /> : <img src={uncheckLogo} />}
+                    </li>
+                    <li>
+                      <a target="_blank" href="https://developer.mozilla.org/pl/docs/Web/API/Push_API" title="https://developer.mozilla.org/pl/docs/Web/API/Push_API">Push Notifications:   </a>
+                      {this.state.PushManager ? <img src={checkLogo} /> : <img src={uncheckLogo} />}
+                    </li>
+                    <li>
+                      <a target="_blank" href="https://developer.mozilla.org/pl/docs/Web/API/Cache" title="https://developer.mozilla.org/pl/docs/Web/API/Cache">Cache Storage (Offline):    </a>
+                      {this.state.Cache ? <img src={checkLogo} /> : <img src={uncheckLogo} />}
+                    </li>
+                    <li>
+                      <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Payment_Request_API" title="https://developer.mozilla.org/en-US/docs/Web/API/Payment_Request_API">Payments:   </a>
+                      {this.state.PaymentRequest ? <img src={checkLogo} /> : <img src={uncheckLogo} />}
+                    </li>
+                    <li>
+                      <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share" title="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share">Share:    </a>
+                      {this.state.share ? <img src={checkLogo} /> : <img src={uncheckLogo} />}
+                    </li>
+                    <li>
+                      <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API" title="https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API">Fullscreen:   </a>
+                      {this.state.canFullscreen ? <img src={checkLogo} /> : <img src={uncheckLogo} />}
+                    </li>
+                  </ul>
+                </div>
 
-            <Modal.Footer>
+                <div>
+                  <h4>IOT features:{this.IOTcont}/7</h4>
+                  <ul>
+                    <li>
+                      <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API" title="https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API">Web Bluetooth:    </a>
+                      {this.state.WebBluetooth ? <img src={checkLogo} /> : <img src={uncheckLogo} />}
+                    </li>
+                    <li>
+                      <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/USB" value="https://developer.mozilla.org/en-US/docs/Web/API/USB">Web USB:    </a>
+                      {this.state.USB ? <img src={checkLogo} /> : <img src={uncheckLogo} />}
+                    </li>
+                    <li>
+                      <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Glossary/WebRTC" title="https://developer.mozilla.org/en-US/docs/Glossary/WebRTC">Web RTC Data Channels:    </a>
+                      {this.state.WebRTC ? <img src={checkLogo} /> : <img src={uncheckLogo} />}
+                    </li>
+                    <li>
+                      <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getUserMedia" title="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getUserMedia">Video/Camera Access:    </a>
+                      {this.state.UserMedia ? <img src={checkLogo} /> : <img src={uncheckLogo} />}
+                    </li>
+                    <li>
+                      <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Archive/B2G_OS/API/Power_Management_API" title="https://developer.mozilla.org/en-US/docs/Archive/B2G_OS/API/Power_Management_API">Power Management:   </a>
+                      {this.state.PowerManagement ? <img src={checkLogo} /> : <img src={uncheckLogo} />}
+                    </li>
+                    <li>
+                      <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/" title="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/">Voice Rec / Text-to-speech:   </a>
+                      {this.state.WebSpeech ? <img src={checkLogo} /> : <img src={uncheckLogo} />}
+                    </li>
+                    <li>
+                      <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Beacon_API" title="https://developer.mozilla.org/en-US/docs/Web/API/Beacon_API">Beacons:    </a>
+                      {this.state.Beacon ? <img src={checkLogo} /> : <img src={uncheckLogo} />}
+                    </li>
+                  </ul>
+                </div>
 
-            </Modal.Footer>
-          </Modal>
+              </Modal.Body>
+
+              <Modal.Footer>
+                <Button variant="outline-primary" onClick={this.handleClose.bind(this)}>
+                  Close</Button>
+              </Modal.Footer>
+            </Modal>
+          </div>
         </div>
       </div>
     );
