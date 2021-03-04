@@ -27,12 +27,12 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    this.PWAcont = 0;
+    this.IOTcont = 0;
     this.WebBrowser = '';
 
     this.state = {
       show: false,
-      PWAcont: 0,
-      IOTcont: 0,
 
       serviceWorker: false,
       SyncManager: false,
@@ -55,11 +55,11 @@ class App extends Component {
   handleClose() {
     this.setState(
       {
-        show: false,
-        PWAcont: 0,
-        IOTcont: 0,
+        show: false
       }
     );
+    this.PWAcont = 0;
+    this.IOTcont = 0;
   }
 
   handleShow() {
@@ -77,7 +77,7 @@ class App extends Component {
           serviceWorker: true,
         }
       );
-      this.state.PWAcont = this.state.PWAcont + 1;
+      this.PWAcont += 1;
     }
     ////////
     if ('SyncManager' in window) {
@@ -86,16 +86,16 @@ class App extends Component {
           SyncManager: true,
         }
       );
-      this.state.PWAcont = this.state.PWAcont + 1;
+      this.PWAcont += 1;
     }
-    //////
+    ////////
     if ('PushManager' in window) {
       this.setState(
         {
           PushManager: true,
         }
       );
-      this.state.PWAcont = this.state.PWAcont + 1;
+      this.PWAcont += 1;
     }
     ////////
     if ('Cache' in window) {
@@ -104,7 +104,7 @@ class App extends Component {
           Cache: true,
         }
       );
-      this.state.PWAcont = this.state.PWAcont + 1;
+      this.PWAcont += 1;
     }
     ////////
     if ('PaymentRequest' in window) {
@@ -113,7 +113,7 @@ class App extends Component {
           PaymentRequest: true,
         }
       );
-      this.state.PWAcont = this.state.PWAcont + 1;
+      this.PWAcont += 1;
     }
     ////////
     if ('share' in navigator) {
@@ -122,7 +122,7 @@ class App extends Component {
           share: true,
         }
       );
-      this.state.PWAcont = this.state.PWAcont + 1;
+      this.PWAcont += 1;
     }
     ////////
     const canFullscreen = (function () {
@@ -145,7 +145,7 @@ class App extends Component {
           canFullscreen: true,
         }
       );
-      this.state.PWAcont = this.state.PWAcont + 1;
+      this.PWAcont += 1;
     }
     ////////
     ////////
@@ -155,7 +155,7 @@ class App extends Component {
           WebBluetooth: true,
         }
       );
-      this.state.IOTcont = this.state.IOTcont + 1;
+      this.IOTcont += 1;
     }
     ////////
     if ('USB' in window) {
@@ -164,7 +164,7 @@ class App extends Component {
           USB: true,
         }
       );
-      this.state.IOTcont = this.state.IOTcont + 1;
+      this.IOTcont += 1;
     }
     ////////
     if ('RTCDataChannel' in window) {
@@ -173,7 +173,7 @@ class App extends Component {
           WebRTC: true,
         }
       );
-      this.state.IOTcont = this.state.IOTcont + 1;
+      this.IOTcont += 1;
     }
     //////
     if ('getUserMedia' in navigator) {
@@ -182,7 +182,7 @@ class App extends Component {
           UserMedia: true,
         }
       );
-      this.state.IOTcont = this.state.IOTcont + 1;
+      this.IOTcont += 1;
     }
     ////////
     if ('mozPower' in navigator) {
@@ -191,7 +191,7 @@ class App extends Component {
           PowerManagement: true,
         }
       );
-      this.state.IOTcont = this.state.IOTcont + 1;
+      this.IOTcont += 1;
     }
     ////////
     if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
@@ -200,7 +200,7 @@ class App extends Component {
           WebSpeech: true,
         }
       );
-      this.state.IOTcont = this.state.IOTcont + 1;
+      this.IOTcont += 1;
     }
     ////////
     if ('sendBeacon' in navigator) {
@@ -209,12 +209,11 @@ class App extends Component {
           Beacon: true,
         }
       );
-      this.state.IOTcont = this.state.IOTcont + 1;
+      this.IOTcont += 1;
     }
   }
 
   render() {
-
     return (
       <div>
         <div>
@@ -242,7 +241,7 @@ class App extends Component {
                 </div>
 
                 <div>
-                  <h4>PWA features:{this.state.PWAcont}/7</h4>
+                  <h4>PWA features:{this.PWAcont}/7</h4>
                   <ul>
                     <li>
                       <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API">Service Worker:   </a>
@@ -276,7 +275,7 @@ class App extends Component {
                 </div>
 
                 <div>
-                  <h4>IOT features:{this.state.IOTcont}/7</h4>
+                  <h4>IOT features:{this.IOTcont}/7</h4>
                   <ul>
                     <li>
                       <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API" title="https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API">Web Bluetooth:    </a>
